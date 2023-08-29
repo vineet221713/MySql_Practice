@@ -1,0 +1,755 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database test ;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> drop database test ;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> CREATE DATABASE Ttemp1 ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> drop databse Ttemp1 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databse Ttemp1' at line 1
+mysql> drop database Ttemp1 ;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE DATABSE temp1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DATABSE temp1' at line 1
+mysql> CREATE DATABASE temp1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> CREATE DATABASE collage ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE DATABASE college ;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> USE college ;
+ERROR 1049 (42000): Unknown database 'college'
+mysql> drop databse collage ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databse collage' at line 1
+mysql> drop database collage ;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE DATABASE college ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> USE college ;
+Database changed
+mysql> CREATE TABLE student(id INT PRIMARY KEY , name VARCHAR(20) , age INT NOT NULL);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO student values(1,'vineet',20);
+ERROR 1062 (23000): Duplicate entry '1' for key 'student.PRIMARY'
+mysql> INSERT INTO student values(2,'Abhishek',30);
+ERROR 1062 (23000): Duplicate entry '2' for key 'student.PRIMARY'
+mysql> select * from student ;
++----+----------+-----+
+| id | name     | age |
++----+----------+-----+
+|  1 | vineet   |  20 |
+|  2 | Abhishek |  30 |
++----+----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE IF NOT EXISTS college ;
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> show databases ;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| temp1              |
+| test               |
+| vineet             |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> use college ;
+Database changed
+mysql> desc college ;
+ERROR 1146 (42S02): Table 'college.college' doesn't exist
+mysql> SHOW TABLES ;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> CREATE DADABASE IF NOT EXISTS college ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DADABASE IF NOT EXISTS college' at line 1
+mysql> CREATE DATABASE IF NOT EXISTS college ;
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> DROP DATABASE IF EXISTS temp ;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> SHOW TABLES ;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> DESC student ;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> /* COMMENT*/
+mysql> /* COMMENT */
+mysql> SELECT * FROM student ;
++----+----------+-----+
+| id | name     | age |
++----+----------+-----+
+|  1 | vineet   |  20 |
+|  2 | Abhishek |  30 |
++----+----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES(3,"AJAY",26);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student (id,name,age) VALUES(4,"Vijay",30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student ;
++----+----------+-----+
+| id | name     | age |
++----+----------+-----+
+|  1 | vineet   |  20 |
+|  2 | Abhishek |  30 |
+|  3 | AJAY     |  26 |
+|  4 | Vijay    |  30 |
++----+----------+-----+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO student (id,name,age) VALUE(101,'Karan',31),(102,'Arjun',32),(103,'Sohan',28);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> /* For MUltiple Entry*/
+mysql>  CREATE TABLE temp1(id int unique , roll int primary key , name varchar(20) not null) ;
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc temp1 ;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  | UNI | NULL    |       |
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> CRAETE TABLE temp2(id INT , roll INT , name VARCH
+AR(20) , PRIMARY KEY(id , roll) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CRAETE TABLE temp2(id INT , roll INT , name VARCHAR(20) , PRIMARY KEY(id , roll)' at line 1
+mysql> CREATE TABLE temp2(id INT , roll INT , name VARCH
+AR(20) , PRIMARY KEY(id , roll) );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> /* primary key can be combination of two */
+mysql> /* combination should be unique */
+mysql> CREATE TABLE customer (id INT PRIMARY KEY , name
+VARCHAR(20) , address VARCHAR(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE temp( cust_id INT , FOREIGN KEY(cust
+_id) RESFERENCES customer(id)) ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RESFERENCES customer(id))' at line 1
+mysql> CREATE TABLE temp( cust_id INT , FOREIGN KEY(cust_id) REFERENCES customer(id)) ;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc temp;
++---------+------+------+-----+---------+-------+
+| Field   | Type | Null | Key | Default | Extra |
++---------+------+------+-----+---------+-------+
+| cust_id | int  | YES  | MUL | NULL    |       |
++---------+------+------+-----+---------+-------+
+1 row in set (0.01 sec)
+
+mysql> desc customer ;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> CREATE TABLE emp(
+    -> id INT ,
+    -> salary INT,
+    -> kxzp[aK);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[aK)' at line 4
+mysql> CREATE TABLE emp( id INT , salary INT DEFAULT 250
+00);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc emp ;
++--------+------+------+-----+---------+-------+
+| Field  | Type | Null | Key | Default | Extra |
++--------+------+------+-----+---------+-------+
+| id     | int  | YES  |     | NULL    |       |
+| salary | int  | YES  |     | 25000   |       |
++--------+------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into emp(1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1)' at line 1
+mysql> insert into emp (id) values(101) ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from emp ;
++------+--------+
+| id   | salary |
++------+--------+
+|  101 |  25000 |
++------+--------+
+1 row in set (0.00 sec)
+
+mysql> /* Check constrain*/
+mysql>
+mysql> craete table city (id int primary key , city varc
+har(20),age int not null , constraint age_check CHECK (a
+ge >=18 AND city = "delhi") );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'craete table city (id int primary key , city varchar(20),age int not null , cons' at line 1
+mysql> create table city (id int primary key , city varchar(20),age int not null , constraint age_check CHECK (age >=18 AND city = "delhi") );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc city ;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| city  | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into city values (1, delhi,16);
+ERROR 1054 (42S22): Unknown column 'delhi' in 'field list'
+mysql> insert into city values (1, "delhi",16);
+ERROR 3819 (HY000): Check constraint 'age_check' is violated.
+mysql> insert into city values (1, "delhi",18);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> /* Here we can not add age which is less then 18
+and city must be delhi ) */
+mysql> drop student ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student' at line 1
+mysql> drop table student ;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> craete table student ( rollno int primary key , n
+ame varchar(50) , marks int not null , garade varchar(2)
+not null , city varchar(20) ) ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'craete table student ( rollno int primary key , name varchar(50) , marks int not' at line 1
+mysql> create table student ( rollno int primary key , name varchar(50) , marks int not null , garade varchar(2)not null , city varchar(20) ) ;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| marks  | int         | NO   |     | NULL    |       |
+| garade | varchar(2)  | NO   |     | NULL    |       |
+| city   | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student values (101,'anil',78,'c','pu
+ne');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values (102,'balmiki',93,'a','mumbai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values (103,'chetan',85,'b','mumbai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values (104,'dhruv',96,'a','delhi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values (105,'emanual',12,'f',
+'delhi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values (106,'farah',82,'b','delhi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    101 | anil    |    78 | c      | pune   |
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
+|    104 | dhruv   |    96 | a      | delhi  |
+|    105 | emanual |    12 | f      | delhi  |
+|    106 | farah   |    82 | b      | delhi  |
++--------+---------+-------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select rollno , name from student ;
++--------+---------+
+| rollno | name    |
++--------+---------+
+|    101 | anil    |
+|    102 | balmiki |
+|    103 | chetan  |
+|    104 | dhruv   |
+|    105 | emanual |
+|    106 | farah   |
++--------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select Dustinct city from student ;
+ERROR 1054 (42S22): Unknown column 'Dustinct' in 'field list'
+mysql> select distict city from student ;
+ERROR 1054 (42S22): Unknown column 'distict' in 'field list'
+mysql> select distinct city from student ;
++--------+
+| city   |
++--------+
+| pune   |
+| mumbai |
+| delhi  |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where city = 'delhi' ;
++--------+---------+-------+--------+-------+
+| rollno | name    | marks | garade | city  |
++--------+---------+-------+--------+-------+
+|    104 | dhruv   |    96 | a      | delhi |
+|    105 | emanual |    12 | f      | delhi |
+|    106 | farah   |    82 | b      | delhi |
++--------+---------+-------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where marks >80 ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
+|    104 | dhruv   |    96 | a      | delhi  |
+|    106 | farah   |    82 | b      | delhi  |
++--------+---------+-------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where marks >80 and city = 'delhi' ;
++--------+-------+-------+--------+-------+
+| rollno | name  | marks | garade | city  |
++--------+-------+-------+--------+-------+
+|    104 | dhruv |    96 | a      | delhi |
+|    106 | farah |    82 | b      | delhi |
++--------+-------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where marks >80 or city = 'delhi' ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
+|    104 | dhruv   |    96 | a      | delhi  |
+|    105 | emanual |    12 | f      | delhi  |
+|    106 | farah   |    82 | b      | delhi  |
++--------+---------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where marks 80 and 90 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '80 and 90' at line 1
+mysql> select * from student where marks 80 or 90 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '80 or 90' at line 1
+mysql> select * from student where marks 80 and 90 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '80 and 90' at line 1
+mysql> select * from student where marks between 80 and
+90 ;
++--------+--------+-------+--------+--------+
+| rollno | name   | marks | garade | city   |
++--------+--------+-------+--------+--------+
+|    103 | chetan |    85 | b      | mumbai |
+|    106 | farah  |    82 | b      | delhi  |
++--------+--------+-------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where city in ('delhi', 'mu
+mbai');
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
+|    104 | dhruv   |    96 | a      | delhi  |
+|    105 | emanual |    12 | f      | delhi  |
+|    106 | farah   |    82 | b      | delhi  |
++--------+---------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student limit 3 ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    101 | anil    |    78 | c      | pune   |
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
++--------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student limit 5 ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    101 | anil    |    78 | c      | pune   |
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
+|    104 | dhruv   |    96 | a      | delhi  |
+|    105 | emanual |    12 | f      | delhi  |
++--------+---------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where marks >75 limit 3 ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    101 | anil    |    78 | c      | pune   |
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
++--------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student order by city asc ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    104 | dhruv   |    96 | a      | delhi  |
+|    105 | emanual |    12 | f      | delhi  |
+|    106 | farah   |    82 | b      | delhi  |
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
+|    101 | anil    |    78 | c      | pune   |
++--------+---------+-------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student order by marks desc ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    104 | dhruv   |    96 | a      | delhi  |
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
+|    106 | farah   |    82 | b      | delhi  |
+|    101 | anil    |    78 | c      | pune   |
+|    105 | emanual |    12 | f      | delhi  |
++--------+---------+-------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student order by rollno desc ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    106 | farah   |    82 | b      | delhi  |
+|    105 | emanual |    12 | f      | delhi  |
+|    104 | dhruv   |    96 | a      | delhi  |
+|    103 | chetan  |    85 | b      | mumbai |
+|    102 | balmiki |    93 | a      | mumbai |
+|    101 | anil    |    78 | c      | pune   |
++--------+---------+-------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student order by marks desc limit 3
+ ;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    104 | dhruv   |    96 | a      | delhi  |
+|    102 | balmiki |    93 | a      | mumbai |
+|    103 | chetan  |    85 | b      | mumbai |
++--------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student order by marks asc limit 4
+;
++--------+---------+-------+--------+--------+
+| rollno | name    | marks | garade | city   |
++--------+---------+-------+--------+--------+
+|    105 | emanual |    12 | f      | delhi  |
+|    101 | anil    |    78 | c      | pune   |
+|    106 | farah   |    82 | b      | delhi  |
+|    103 | chetan  |    85 | b      | mumbai |
++--------+---------+-------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> /* aggigate */
+mysql> /* count(), max() , min() , sum() , avg() */
+mysql>
+mysql> /* aggigate perfor calcution take multiple vallu and return single one  */
+mysql> select avg(marks) from student
+    -> ;
++------------+
+| avg(marks) |
++------------+
+|    74.3333 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select max(marks) from student ;
++------------+
+| max(marks) |
++------------+
+|         96 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(marks) from student ;
++--------------+
+| count(marks) |
++--------------+
+|            6 |
++--------------+
+1 row in set (0.03 sec)
+
+mysql> select min(marks) from student ;
++------------+
+| min(marks) |
++------------+
+|         12 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> selct city , count(name) from student group by ci
+ty ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct city , count(name) from student group by city' at line 1
+mysql> select city , count(name) from student group by city ;
++--------+-------------+
+| city   | count(name) |
++--------+-------------+
+| pune   |           1 |
+| mumbai |           2 |
+| delhi  |           3 |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select city from student group by city ;
++--------+
+| city   |
++--------+
+| pune   |
+| mumbai |
+| delhi  |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> select city, count(city name) from student group by city ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name) from student group by city' at line 1
+mysql> select city, count(name) from student group by city ;
++--------+-------------+
+| city   | count(name) |
++--------+-------------+
+| pune   |           1 |
+| mumbai |           2 |
+| delhi  |           3 |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select city , count (rollno) from student group b
+y city ;
+ERROR 1630 (42000): FUNCTION college.count does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> select city , count(rollno) from student group by city ;
++--------+---------------+
+| city   | count(rollno) |
++--------+---------------+
+| pune   |             1 |
+| mumbai |             2 |
+| delhi  |             3 |
++--------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select city ,name count(name) from student group
+by city , name ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'count(name) from student group by city , name' at line 1
+mysql> select city ,name, count(name) from student group by city,name ;
++--------+---------+-------------+
+| city   | name    | count(name) |
++--------+---------+-------------+
+| pune   | anil    |           1 |
+| mumbai | balmiki |           1 |
+| mumbai | chetan  |           1 |
+| delhi  | dhruv   |           1 |
+| delhi  | emanual |           1 |
+| delhi  | farah   |           1 |
++--------+---------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select city from student where marks asc ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asc' at line 1
+mysql> select city from student where avg(marks) asc  ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asc' at line 1
+mysql> select city ,avrage(avg(marks)) from student grou
+p by city ;
+ERROR 1305 (42000): FUNCTION college.avrage does not exist
+mysql> select city ,avg(marks) from student group by city ;
++--------+------------+
+| city   | avg(marks) |
++--------+------------+
+| pune   |    78.0000 |
+| mumbai |    89.0000 |
+| delhi  |    63.3333 |
++--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select city , avg(marks) from student group by ci
+ty order by marks asc ;
+ERROR 1055 (42000): Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'college.student.marks' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select city , avg(marks) from student group by city order by city  ;
++--------+------------+
+| city   | avg(marks) |
++--------+------------+
+| delhi  |    63.3333 |
+| mumbai |    89.0000 |
+| pune   |    78.0000 |
++--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select city , avg(marks) from student group by city order by city asc ;
++--------+------------+
+| city   | avg(marks) |
++--------+------------+
+| delhi  |    63.3333 |
+| mumbai |    89.0000 |
+| pune   |    78.0000 |
++--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select city , avg(marks) from student group by city order by marks asc ;
+ERROR 1055 (42000): Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'college.student.marks' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select city , avg(marks) from student group by city order by rollno asc ;
+ERROR 1055 (42000): Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'college.student.rollno' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select city , avg(marks) from student group by city order by rollno ;
+ERROR 1055 (42000): Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'college.student.rollno' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select city , avg(marks) from student group by city order by marks asc ;
+ERROR 1055 (42000): Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'college.student.marks' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select city , avg(marks) from student group by city order by city asc ;
++--------+------------+
+| city   | avg(marks) |
++--------+------------+
+| delhi  |    63.3333 |
+| mumbai |    89.0000 |
+| pune   |    78.0000 |
++--------+------------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> select grade ,count(name) from student group by grade ;
+ERROR 1054 (42S22): Unknown column 'grade' in 'field list'
+mysql> select grade ,count(name) from student group by grade ;
+ERROR 1054 (42S22): Unknown column 'grade' in 'field list'
+mysql> desc student ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| marks  | int         | NO   |     | NULL    |       |
+| garade | varchar(2)  | NO   |     | NULL    |       |
+| city   | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> select grade , count(name) from student group by
+grade ;
+ERROR 1054 (42S22): Unknown column 'grade' in 'field list'
+mysql> select grade , count(rollno) from student group by grade ;
+ERROR 1054 (42S22): Unknown column 'grade' in 'field list'
+mysql> select garade , count(name) from student group by grade ;
+ERROR 1054 (42S22): Unknown column 'grade' in 'group statement'
+mysql> select garade , count(name) from student group by garade ;
++--------+-------------+
+| garade | count(name) |
++--------+-------------+
+| c      |           1 |
+| a      |           2 |
+| b      |           2 |
+| f      |           1 |
++--------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select garade from student group by garade order
+by asc ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asc' at line 1
+mysql> select garade from student group by garade order by garade asc ;
++--------+
+| garade |
++--------+
+| a      |
+| b      |
+| c      |
+| f      |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select garade , count(name) from student group by garade order by garade asc ;
++--------+-------------+
+| garade | count(name) |
++--------+-------------+
+| a      |           2 |
+| b      |           2 |
+| c      |           1 |
+| f      |           1 |
++--------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> /*   Having Clase */
+mysql> selct count(name) , city from student group by ci
+ty having max(marks)>90 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct count(name) , city from student group by city having max(marks)>90' at line 1
+mysql> select count(name) , city from student group by city having max(marks)>90 ;
++-------------+--------+
+| count(name) | city   |
++-------------+--------+
+|           2 | mumbai |
+|           3 | delhi  |
++-------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select city , count(marks) from student group by
+city having max(marks) ;
++--------+--------------+
+| city   | count(marks) |
++--------+--------------+
+| pune   |            1 |
+| mumbai |            2 |
+| delhi  |            3 |
++--------+--------------+
+3 rows in set (0.00 sec)
